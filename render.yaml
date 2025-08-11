@@ -10,7 +10,7 @@ services:
       - key: MB_DB_CONNECTION_URI
         fromSecret: SUPABASE_DATABASE_URL
       - key: MB_SITE_URL
-        value: https://metabase.onrender.com # Replace with your Render URL
+        value: https://people-team-dashboard-metabase.onrender.com # Replace with your Render URL
       - key: JAVA_TOOL_OPTIONS
         value: "-Xmx512m"
 
