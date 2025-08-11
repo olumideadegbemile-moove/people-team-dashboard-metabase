@@ -1,16 +1,23 @@
 services:
   - type: web
-    name: metabase
+    name: people-team-dashboard-metabase
     env: docker
-    repo: https://github.com/render-examples/metabase.git # optional
-    plan: standard # ensure that metabase has at least 2GB of RAM (defaults to starter)
-    autoDeploy: false
+    dockerImage: docker.io/metabase/metabase:latest
+    plan: free
     envVars:
-      - key: MB_DB_CONNECTION_URI
-        fromDatabase:
-          name: elephant
-          property: connectionString
-databases:
-  - name: elephant
-    databaseName: metabasedb
-    ipAllowList: [] # only allow internal connections
+      - key: MB_DB_TYPE
+        value: postgres
+      - key: MB_DB_DBNAME
+        value: postgres
+      - key: MB_DB_PORT
+        value: 5432
+      - key: MB_DB_USER
+        value: postgres
+      - key: MB_DB_PASS
+        sync: false   # You will set this in Render's dashboard for security
+      - key: MB_DB_HOST
+        value: db.ikojzddhsvvquwnkoxda.supabase.co
+      - key: MB_ENCRYPTION_SECRET
+        generateValue: true  # Random secret generated on deploy
+      - key: JAVA_TOOL_OPTIONS
+        value: -Xmx512m
