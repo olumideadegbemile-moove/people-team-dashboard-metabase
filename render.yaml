@@ -2,36 +2,16 @@ services:
   - type: web
     name: metabase
     env: docker
-    plan: free
-    autoDeploy: true
-    dockerfilePath: ""
-    image:
-      url: docker.io/metabase/metabase:latest
+    plan: free # You can switch to 'starter' or higher if you need more resources
+    dockerfilePath: Dockerfile
     envVars:
       - key: MB_DB_TYPE
         value: postgres
-      - key: MB_DB_DBNAME
-        value: metabase
-      - key: MB_DB_PORT
-        value: "5432"
-      - key: MB_DB_USER
-        fromService:
-          name: metabase-db
-          type: postgresql
-          property: user
-      - key: MB_DB_PASS
-        fromService:
-          name: metabase-db
-          type: postgresql
-          property: password
-      - key: MB_DB_HOST
-        fromService:
-          name: metabase-db
-          type: postgresql
-          property: host
+      - key: MB_DB_CONNECTION_URI
+        fromSecret: SUPABASE_DATABASE_URL
+      - key: MB_SITE_URL
+        value: https://metabase.onrender.com # Replace with your Render URL
+      - key: JAVA_TOOL_OPTIONS
+        value: "-Xmx512m"
 
-databases:
-  - name: metabase-db
-    databaseName: metabase
-    plan: free
-    ipAllowList: []
+databases: []
