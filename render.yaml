@@ -2,7 +2,7 @@ services:
   - type: web
     name: people-team-dashboard-metabase
     env: docker
-    dockerImage: docker.io/metabase/metabase:latest
+    image: docker.io/metabase/metabase:latest
     plan: free
     envVars:
       - key: MB_DB_TYPE
