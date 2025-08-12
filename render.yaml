@@ -12,6 +12,6 @@ services:
       - key: MB_SITE_URL
         value: https://people-team-dashboard-metabase.onrender.com # Replace with your Render URL
       - key: JAVA_TOOL_OPTIONS
-        value: "-Xmx128m -Xms128m"
+        value: "-Xmx2g -Xms1g"
 
 databases: []
